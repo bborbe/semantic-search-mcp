@@ -125,6 +125,6 @@ src/semantic_search/
 - **Weighted embeddings** — Filename 3x, title 3x, tags 2x, H1 2x, body 1x (see `docs/design/weighted-embedding-strategy.md`)
 - **Thread-safe singleton** — `factory.py` uses Lock for lazy init of indexer + watcher
 - **Temp dir for index** — FAISS index stored in `/tmp/semantic-search/{hash}/{pid}/`, not in vault
-- **Full content in meta** — `self.meta` stores entire file content per entry (for future features)
+- **Path-only meta** — `self.meta` stores only `{"path": ...}` per entry; file content is never kept in the index (path-only since the 2026-04-03 memory-leak fix)
 - **Two server modes** — MCP (fastmcp) for Claude Code, REST for HTTP clients; share same indexer
 - **src/ layout** — Package at `src/semantic_search/`, not root
